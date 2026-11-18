@@ -20,7 +20,7 @@ GitHub Pages:
 5. iPhone: Safari > Share > Add to Home Screen. Android: Chrome > menu > Install app.
 
 SERVICE WORKER / UPDATES
-This app registers xc-doorcode-sw.js, uses the unique cache namespace xc-doorcode-pwa-v9 and manifest ID xc-doorcode-pwa-v9. It checks for an update every time the app is launched, bypassing the browser's HTTP cache for the service-worker script. If a new worker takes control while the app is open, the page reloads to use the updated files. The worker only removes old caches in its own xc-doorcode-pwa- namespace and does not clear unrelated app caches.
+This app registers xc-doorcode-sw.js, uses the unique cache namespace xc-doorcode-pwa-v17 and manifest ID xc-doorcode-pwa-v17. It checks for an update every time the app is launched, bypassing the browser's HTTP cache for the service-worker script. If a new worker takes control while the app is open, the page reloads to use the updated files. The worker only removes old caches in its own xc-doorcode-pwa- namespace and does not clear unrelated app caches.
 
 DATA & BACKUPS
 Entries are stored in localStorage in the browser on that device. Export JSON regularly if you need a backup or want to move the directory to another device. Import replaces the current directory.
@@ -76,3 +76,10 @@ All app modal popups (location editor, settings and keypad) have a visible X clo
 
 VERSION 16 CHANGES
 Export JPEG now opens an in-app preview modal with an X close button; use Save JPEG within the preview to download the image. Removed the individual large COPY buttons beside door codes. The Copy action remains available from the location three-dot menu.
+
+
+VERSION 17
+- JPEG export now uses the native device share sheet when file sharing is supported.
+- On iPhone, choose “Save Image” in the iOS share sheet to save the JPEG into Photos.
+- Other browsers retain a direct JPEG download fallback.
+- The app cannot request unrestricted direct Photos-library access as a web app; iOS controls saving through its share sheet.

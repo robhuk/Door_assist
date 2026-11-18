@@ -93,9 +93,35 @@ async function exportLocationJpeg(id){
  $('jpegPreviewImage').src=dataUrl;
  $('jpegPreviewImage').alt=`Door access codes for ${loc.name}`;
  $('jpegPreviewTitle').textContent=loc.name;
- $('saveJpegBtn').onclick=()=>{
-  const a=document.createElement('a');a.href=dataUrl;a.download=filename;
-  document.body.appendChild(a);a.click();a.remove();toast('JPEG saved');
+ $('saveJpegBtn').onclick=async()=>{
+  const button=$('saveJpegBtn');
+  const originalLabel=button.textContent;
+  button.disabled=true;
+  button.textContent='Preparing JPEG…';
+  try{
+   const blob=await (await fetch(dataUrl)).blob();
+   const file=new File([blob],filename,{type:'image/jpeg',lastModified:Date.now()});
+   if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+    try{
+     await navigator.share({files:[file],title:`${loc.name} — Door access codes`,text:'Door access directory image'});
+     toast('Choose “Save Image” to add it to Photos');
+    }catch(error){
+     if(error.name!=='AbortError')throw error;
+    }
+   }else{
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1500);
+    toast(/iPhone|iPad|iPod/.test(navigator.userAgent)?'Use Share, then Save Image to add it to Photos':'JPEG downloaded');
+   }
+  }catch(error){
+   const a=document.createElement('a');a.href=dataUrl;a.download=filename;
+   document.body.appendChild(a);a.click();a.remove();
+   toast('JPEG downloaded');
+  }finally{
+   button.disabled=false;
+   button.textContent=originalLabel;
+  }
  };
  openModal('jpegPreviewModal');
 }
