@@ -89,3 +89,6 @@ VERSION 18
 - Create / Share PDF opens the device print options for the complete directory.
 - Choose Save as PDF or the system share option to save or share the PDF.
 - The PDF retains its A4 landscape table, repeat table headings and confidentiality warning.
+
+VERSION 19
+- All saved locations are collapsed by default whenever the app is opened or reloaded. Locations can still be expanded individually.

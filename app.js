@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const STORE='doorcode_directory_v1';let locations=load(),editingId=null,keypadValue='',keypadTarget=null,toastTimer;const collapsedLocations=new Set();
+const STORE='doorcode_directory_v1';let locations=load(),editingId=null,keypadValue='',keypadTarget=null,toastTimer;const collapsedLocations=new Set(locations.map(x=>x.id));
 const $=id=>document.getElementById(id);const uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
 function load(){try{const v=JSON.parse(localStorage.getItem(STORE)||'[]');return Array.isArray(v)?v:[]}catch{return []}}
 function save(){localStorage.setItem(STORE,JSON.stringify(locations));render()}
