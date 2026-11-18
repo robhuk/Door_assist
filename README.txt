@@ -72,3 +72,7 @@ Added Export JPEG to each location's three-dot menu. It creates a downloadable, 
 
 VERSION 15 CHANGES
 All app modal popups (location editor, settings and keypad) have a visible X close control. PDF export is now a neutral Door Access Directory without app branding or references. The PDF includes only individual door notes, not location-level notes. The confidentiality warning remains and now advises that access codes should be changed regularly and whenever security may have been compromised.
+
+
+VERSION 16 CHANGES
+Export JPEG now opens an in-app preview modal with an X close button; use Save JPEG within the preview to download the image. Removed the individual large COPY buttons beside door codes. The Copy action remains available from the location three-dot menu.
