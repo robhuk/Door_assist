@@ -38,3 +38,11 @@
 
 .pdf-preview-sheet{width:min(960px,100%);max-height:94dvh;overflow:auto}
 #pdfPreviewFrame{display:block;width:100%;height:min(58dvh,620px);border:1px solid #d9dde3;border-radius:10px;background:#fff}
+
+.pin-gate{position:fixed;inset:0;z-index:10000;background:#f5f5f6;display:flex;align-items:center;justify-content:center;padding:24px;overflow:auto}
+.pin-gate.hidden{display:none}
+.pin-panel{width:min(420px,100%);background:#fff;border-radius:18px;padding:28px;box-shadow:0 18px 60px rgba(20,20,30,.18);border-top:6px solid #A50034}
+.pin-panel h1{font-size:26px;margin:8px 0}.pin-panel p{color:#626a75;line-height:1.45}
+.pin-input{text-align:center;letter-spacing:.35em;font-size:22px}
+.pin-error{color:#A50034!important;font-weight:700;min-height:1.3em}
+.pin-footnote{font-size:12px!important;margin-top:20px}

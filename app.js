@@ -210,5 +210,39 @@ if('serviceWorker'in navigator&&location.protocol!=='file:'){
     }catch(e){}
   });
 }
+
+// Device-local PIN gate. Only a salted SHA-256 verifier is stored, never the PIN.
+const PIN_STORE='doorcode_pin_v1';
+function pinHex(bytes){return Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('')}
+function pinSalt(){const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);return pinHex(bytes)}
+async function pinHash(pin,salt){const data=new TextEncoder().encode(salt+':'+pin);return pinHex(new Uint8Array(await crypto.subtle.digest('SHA-256',data)))}
+async function showPinGate(){
+ const saved=localStorage.getItem(PIN_STORE),isSetup=!saved;
+ $('pinGateTitle').textContent=isSetup?'Set your app PIN':'Enter your PIN';
+ $('pinGateMessage').textContent=isSetup?'Create a 4–8 digit PIN to protect access to this directory.':'Enter your PIN to unlock XC DoorCode.';
+ $('pinConfirmWrap').classList.toggle('hidden',!isSetup);$('pinConfirm').required=isSetup;
+ $('pinInput').value='';$('pinConfirm').value='';$('pinError').textContent='';
+ $('pinSubmit').textContent=isSetup?'Set PIN':'Unlock';
+ $('pinInput').setAttribute('autocomplete',isSetup?'new-password':'current-password');
+ $('pinGate').classList.remove('hidden');setTimeout(()=>$('pinInput').focus(),80);
+}
+$('pinForm').addEventListener('submit',async e=>{
+ e.preventDefault();const pin=$('pinInput').value;
+ if(!/^\d{4,8}$/.test(pin)){$('pinError').textContent='Enter a PIN containing 4–8 digits.';return}
+ const saved=localStorage.getItem(PIN_STORE);
+ if(!saved){
+  if(pin!==$('pinConfirm').value){$('pinError').textContent='The PINs do not match.';return}
+  const salt=pinSalt();localStorage.setItem(PIN_STORE,JSON.stringify({salt,hash:await pinHash(pin,salt)}));
+ }else{
+  let record;try{record=JSON.parse(saved)}catch{}
+  if(!record||!record.salt||!record.hash||await pinHash(pin,record.salt)!==record.hash){
+   $('pinError').textContent='Incorrect PIN. Try again.';$('pinInput').value='';$('pinInput').focus();return;
+  }
+ }
+ $('pinGate').classList.add('hidden');$('pinInput').value='';$('pinConfirm').value='';
+});
+$('lockAppBtn').onclick=()=>{closeModal('settingsModal');showPinGate()};
+
+showPinGate();
 render();
 })();

@@ -92,3 +92,8 @@ VERSION 18
 
 VERSION 19
 - All saved locations are collapsed by default whenever the app is opened or reloaded. Locations can still be expanded individually.
+
+VERSION 20
+- Added a device-local 4–8 digit PIN gate, required on each app launch/reload.
+- Settings includes Lock now to require the PIN again during an app session.
+- PIN verifier is stored as a salted SHA-256 hash; existing directory data key is unchanged.
