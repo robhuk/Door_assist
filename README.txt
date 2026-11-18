@@ -83,3 +83,9 @@ VERSION 17
 - On iPhone, choose “Save Image” in the iOS share sheet to save the JPEG into Photos.
 - Other browsers retain a direct JPEG download fallback.
 - The app cannot request unrestricted direct Photos-library access as a web app; iOS controls saving through its share sheet.
+
+VERSION 18
+- PDF export now opens an in-app preview with a visible close control.
+- Create / Share PDF opens the device print options for the complete directory.
+- Choose Save as PDF or the system share option to save or share the PDF.
+- The PDF retains its A4 landscape table, repeat table headings and confidentiality warning.

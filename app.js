@@ -171,9 +171,27 @@ function exportPdf(){
  </style></head><body><header><div><h1>DOOR ACCESS DIRECTORY</h1><div class="sub">ACCESS CODE REGISTER</div></div><div class="meta">Generated ${esc(printedAt)}<br>${locations.length} location(s) · ${locations.reduce((n,l)=>n+(l.doors||[]).length,0)} door code(s)</div></header>
  <p class="warning"><strong>CONFIDENTIAL — SECURITY NOTICE:</strong> This document contains access codes. Store and share it securely. Access codes should be changed regularly and whenever security may have been compromised.</p>
  <table><thead><tr><th>Location</th><th>Door</th><th>Door code / keypad sequence</th><th>Door-specific note</th><th>Last updated</th></tr></thead><tbody>${rows}</tbody></table>
- <div class="foot">CONFIDENTIAL ACCESS INFORMATION · Choose “Save as PDF” in the print dialog.</div><script>window.addEventListener('load',()=>setTimeout(()=>window.print(),250));</script></body></html>`;
- const w=window.open('','_blank');if(!w){toast('Allow pop-ups to export PDF');return}
- w.document.open();w.document.write(doc);w.document.close();
+ <div class="foot">CONFIDENTIAL ACCESS INFORMATION</div></body></html>`;
+ const blob=new Blob([doc],{type:'text/html;charset=utf-8'});
+ const filename=`door-access-directory-${new Date().toISOString().slice(0,10)}.pdf`;
+ const modal=$('pdfPreviewModal');
+ const frame=$('pdfPreviewFrame');
+ const share=$('sharePdfBtn');
+ const save=$('savePdfBtn');
+ const close=$('closePdfPreviewBtn');
+ if(!modal||!frame||!share||!save||!close){toast('PDF preview is unavailable');return}
+ if(window._doorcodePdfUrl)URL.revokeObjectURL(window._doorcodePdfUrl);
+ window._doorcodePdfUrl=URL.createObjectURL(blob);
+ frame.srcdoc=doc;
+ modal.classList.remove('hidden');
+ share.onclick=()=>downloadPdfHtmlPrint(doc);
+ save.onclick=()=>downloadPdfHtmlPrint(doc);
+ close.onclick=()=>{modal.classList.add('hidden');frame.srcdoc='';if(window._doorcodePdfUrl){URL.revokeObjectURL(window._doorcodePdfUrl);window._doorcodePdfUrl=null}};
+}
+function downloadPdfHtmlPrint(doc){
+ const w=window.open('','_blank');
+ if(!w){toast('Allow pop-ups to create or save the PDF');return}
+ w.document.open();w.document.write(doc.replace('</body>','<script>window.addEventListener("load",()=>setTimeout(()=>window.print(),250));</script></body>'));w.document.close();
 }
 $('exportPdfBtn').onclick=exportPdf;
 $('exportBtn').onclick=()=>{const payload={app:'DoorCode',version:1,exportedAt:stamp(),locations};const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`doorcode-backup-${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);toast('Backup exported')};

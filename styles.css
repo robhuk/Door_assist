@@ -35,3 +35,6 @@
 .jpeg-preview-sheet{max-height:92vh;overflow:auto}
 .jpeg-preview-frame{background:#e9ebef;border-radius:12px;padding:8px;max-height:62vh;overflow:auto;text-align:center}
 .jpeg-preview-frame img{display:block;max-width:100%;height:auto;margin:0 auto;border-radius:7px;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+
+.pdf-preview-sheet{width:min(960px,100%);max-height:94dvh;overflow:auto}
+#pdfPreviewFrame{display:block;width:100%;height:min(58dvh,620px);border:1px solid #d9dde3;border-radius:10px;background:#fff}
