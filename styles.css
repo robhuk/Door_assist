@@ -3,3 +3,13 @@
 .locationheading{flex:1;min-width:0}.cardtop{align-items:center}.collapsebtn{flex:0 0 30px;width:30px;height:30px;border:0;border-radius:8px;background:#f5e8ed;color:var(--red);font-size:20px;font-weight:900;cursor:pointer}.location-content{padding-top:2px}.favourites-filter{margin-top:12px;border:1px solid #e7d9df;background:#fff;color:#6f1837;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;cursor:pointer}.favourites-filter.active{background:var(--gold);border-color:var(--gold);color:#382900}.favouritebtn{font-size:22px;color:#9a7b16}.favouritebtn.is-favourite{color:#c18a00;background:#fff5ce}.keypad-actions{display:flex;gap:10px;margin-top:12px}.keypad-actions>*{flex:1}.keygrid .enterkey{grid-column:span 2;background:#f0f2f5;border-color:#dfe4eb;color:var(--red);font-size:13px;letter-spacing:.5px}.keyhint{line-height:1.45}
 
 .keygrid .backspacekey{background:#e9edf2;border-color:#d8dee7;color:#3d4a5b;font-size:24px}
+
+/* Door-by-door display: show every saved code without selecting from a dropdown. */
+.door-display{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.door-display:last-of-type{border-bottom:0}
+.door-display-info{min-width:0;flex:1}
+.door-display-name{font-size:13px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.door-display .codevalue{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:16px;font-weight:800;letter-spacing:.4px;overflow-wrap:anywhere;white-space:pre-wrap}
+.door-display .codebuttons{display:flex;gap:6px;flex-shrink:0}
+.door-display .codebtn{min-width:54px;padding:9px 10px}
+@media(max-width:420px){.door-display{align-items:flex-start;flex-wrap:wrap}.door-display .codebuttons{width:100%}.door-display .codebuttons button{flex:1}}

@@ -1,8 +1,8 @@
-/* XC DoorCode dedicated service worker. Unique cache namespace: xc-doorcode-pwa-v4. */
-const CACHE_NAME = 'xc-doorcode-pwa-v4';
+/* XC DoorCode dedicated service worker. Unique cache namespace: xc-doorcode-pwa-v9. */
+const CACHE_NAME = 'xc-doorcode-pwa-v9';
 const APP_PREFIX = 'xc-doorcode-pwa-';
 const ASSETS = ['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./icon.svg','./xc-doorcode-sw.js'];
-self.addEventListener('install', event => {
+self.addEventListener('message', event => {\n  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();\n});\nself.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
   self.skipWaiting();
 });
