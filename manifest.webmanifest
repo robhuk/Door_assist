@@ -1,0 +1,20 @@
+{
+  "id": "xc-doorcode-pwa-v4",
+  "name": "XC DoorCode \u2013 Access Directory",
+  "short_name": "XC DoorCode",
+  "description": "CrossCountry-themed offline door access directory",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f5f6",
+  "theme_color": "#A50034",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
