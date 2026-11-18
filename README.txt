@@ -48,3 +48,27 @@ When KEYPAD is selected for an existing saved door code, the app asks for confir
 
 VERSION 9 CHANGES
 The PWA now checks for service-worker updates on every launch rather than once every 12 hours. A newly activated update reloads the app so the latest application files are used. Existing local directory data remains stored under the same localStorage key.
+
+
+VERSION 10 CHANGES
+Removed the KEYPAD button from location cards. Door codes are edited from the location Edit menu by selecting the relevant code field, which opens the custom keypad. Added COPY ALL to each location card; it copies the location name, every door name and code, and access notes where present. Individual COPY buttons remain available.
+
+
+VERSION 11 CHANGES
+Added a Sort locations selector with A–Z and Last updated options. Last updated sorts newest first, with alphabetical order used when timestamps match. Favourite locations remain prioritised in either sort mode. Existing saved data is preserved.
+
+
+VERSION 12 CHANGES
+Replaced the separate location action controls with a three-dot menu on each location. The menu provides Copy (copies the full location details and all door codes), Edit, and Delete. Delete asks for confirmation before removing the location and its door codes. Favourite control remains separate.
+
+
+VERSION 13 CHANGES
+Added an optional note field to every door entry. Door-specific notes are saved with each code, shown beneath that door in the location card, included in Copy All output and included in the PDF export as a separate column. Existing backups import with blank door notes when no note is present; existing saved data remains compatible.
+
+
+VERSION 14 CHANGES
+Added Export JPEG to each location's three-dot menu. It creates a downloadable, formatted JPEG image for that location, including every door name, code, door-specific note and location access note, with a confidentiality footer. Export is per location and does not depend on whether the location card is expanded or collapsed.
+
+
+VERSION 15 CHANGES
+All app modal popups (location editor, settings and keypad) have a visible X close control. PDF export is now a neutral Door Access Directory without app branding or references. The PDF includes only individual door notes, not location-level notes. The confidentiality warning remains and now advises that access codes should be changed regularly and whenever security may have been compromised.

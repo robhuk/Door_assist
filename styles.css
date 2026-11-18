@@ -13,3 +13,21 @@
 .door-display .codebuttons{display:flex;gap:6px;flex-shrink:0}
 .door-display .codebtn{min-width:54px;padding:9px 10px}
 @media(max-width:420px){.door-display{align-items:flex-start;flex-wrap:wrap}.door-display .codebuttons{width:100%}.door-display .codebuttons button{flex:1}}
+
+.copyallbtn{border:0;border-radius:8px;padding:7px 10px;background:#A50034;color:#fff;font-size:11px;font-weight:800;letter-spacing:.3px;cursor:pointer;white-space:nowrap}
+.copyallbtn:active{transform:scale(.97)}
+
+.sortwrap{display:flex;align-items:center;justify-content:flex-end;gap:9px;margin:10px 0 14px;color:#596273;font-size:12px;font-weight:700}
+.sortwrap select{appearance:auto;border:1px solid #d9dde3;border-radius:9px;background:#fff;color:#25232a;padding:8px 30px 8px 10px;font:inherit;font-weight:700;min-width:145px}
+
+.location-menu-wrap{position:relative;display:flex;align-items:center}
+.menu-trigger{font-size:23px;line-height:1;letter-spacing:1px}
+.location-menu{position:absolute;right:0;top:calc(100% + 7px);z-index:30;min-width:138px;padding:5px;background:#fff;border:1px solid #e0e2e6;border-radius:11px;box-shadow:0 10px 28px rgba(24,27,34,.18);display:flex;flex-direction:column}
+.location-menu.hidden{display:none}
+.location-menu button{border:0;background:transparent;text-align:left;padding:11px 12px;border-radius:7px;color:#25232a;font:600 14px inherit;cursor:pointer}
+.location-menu button:active{background:#f2f3f5}
+.location-menu button.danger-menu{color:#b42336}
+
+.doorrow .door-note{display:block;width:100%;min-height:54px;margin-top:9px;resize:vertical;border:1px solid #e0e5eb;border-radius:9px;padding:10px 11px;font:inherit;font-size:13px;line-height:1.4;background:#fff;color:var(--ink)}
+.doornote{font-size:12px;line-height:1.45;color:#5f6c7b;margin:7px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.doornote strong{color:#39485a}
